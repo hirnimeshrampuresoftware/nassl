@@ -1,10 +1,9 @@
 name: Build Wheels
 
-on:
-  push:
-    branches: [ release ]
-  pull_request:
-    branches: [ release ]
+on: [push]
+    #branches: [ release ]
+  #pull_request:
+   # branches: [ release ]
 
 jobs:
   build_wheels:
@@ -17,6 +16,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Set up QEMU
+        if: ${{ matrix.os == 'ubuntu-20.04' }}
+        uses: docker/setup-qemu-action@v1
+
       - uses: actions/setup-python@v2
         name: Install Python
 
@@ -27,9 +30,10 @@ jobs:
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
           CIBW_BUILD: "cp37-* cp38-* cp39-* cp310-*"
-          CIBW_SKIP: "*-win32 pp* *-musllinux_i686"  # Skip win32, PyPy and muslinux32 builds
+          CIBW_SKIP: "*-win32 pp* *-musllinux_i686 *-musllinux_aarch64"  # Skip win32, PyPy and muslinux32 builds
           # Build wheels for Apple Silicon
           CIBW_ARCHS_MACOS: "x86_64 universal2 arm64"
+          CIBW_ARCHS_LINUX: auto aarch64
           # Build manylinux2014 wheels
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux2014
           CIBW_MANYLINUX_I686_IMAGE: manylinux2014
