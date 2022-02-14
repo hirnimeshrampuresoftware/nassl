@@ -7,9 +7,10 @@ on: [push]
 
 jobs:
   build_wheels:
-    name: Build wheels on ${{ matrix.os }}
+    name: Build wheels on ${{ matrix.os }} for ${{ matrix.arch }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-20.04, macOS-10.15, windows-2016]
         arch: [auto]
@@ -34,7 +35,7 @@ jobs:
         run: python -m cibuildwheel --output-dir wheelhouse
         env:
           CIBW_BUILD: "cp37-* cp38-* cp39-* cp310-*"
-          CIBW_SKIP: "*-win32 pp* *-musllinux_i686 *-musllinux_aarch64"  # Skip win32, PyPy and muslinux32 builds
+          CIBW_SKIP: "*-win32 pp* *-musllinux_*"  # Skip win32, PyPy and muslinux32 builds
           # Build wheels for Apple Silicon
           CIBW_ARCHS_MACOS: "x86_64 universal2 arm64"
           CIBW_ARCHS_LINUX: ${{ matrix.arch }}
