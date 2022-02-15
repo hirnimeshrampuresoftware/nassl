@@ -400,6 +400,7 @@ def build_modern_openssl(ctx, do_not_clean=False):
 def build_nassl(ctx):
     """Build the nassl C extension."""
     extra_args = ""
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     if CURRENT_PLATFORM == SupportedPlatformEnum.WINDOWS_32:
         extra_args = "--plat-name=win32"
     elif CURRENT_PLATFORM == SupportedPlatformEnum.WINDOWS_64:
@@ -416,6 +417,7 @@ def build_nassl(ctx):
 @task
 def build_deps(ctx, do_not_clean=False):
     """Build the C libraries the nassl C extension depends on."""
+    print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
     build_zlib(ctx, do_not_clean)
     build_legacy_openssl(ctx, do_not_clean)
     build_modern_openssl(ctx, do_not_clean)
