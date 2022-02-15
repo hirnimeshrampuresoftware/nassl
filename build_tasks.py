@@ -399,7 +399,7 @@ def build_modern_openssl(ctx, do_not_clean=False):
 @task
 def build_nassl(ctx):
     """Build the nassl C extension."""
-    extra_args = ""
+    extra_args = "--plat-name=aarch64"
     print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     if CURRENT_PLATFORM == SupportedPlatformEnum.WINDOWS_32:
         extra_args = "--plat-name=win32"
