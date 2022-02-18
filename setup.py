@@ -54,7 +54,7 @@ NASSL_SETUP = {
 # There are two native extensions: the "legacy" OpenSSL one and the "modern" OpenSSL one
 # First setup the common settings for both legacy and modern nassl
 BASE_NASSL_EXT_SETUP = {
-    "extra_compile_args": [],
+    "extra_compile_args": [ "-fPIC " ],
     "extra_link_args": [],
     "sources": [
         "nassl/_nassl/nassl.c",
