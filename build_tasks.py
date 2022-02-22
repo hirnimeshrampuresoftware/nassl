@@ -249,8 +249,8 @@ class LegacyOpenSslBuildConfig(OpenSslBuildConfig):
     def libcrypto_path(self) -> Path:
         if self.platform in [SupportedPlatformEnum.WINDOWS_32, SupportedPlatformEnum.WINDOWS_64]:
             return self.src_path / "out32" / "libeay32.lib"
-        else:
-            return self.src_path / "libcrypto.so"
+      #  else:
+       #     return self.src_path / "libcrypto.so"
 
     @property
     def libssl_path(self) -> Path:
