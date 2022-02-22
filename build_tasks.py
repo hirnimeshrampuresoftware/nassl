@@ -250,7 +250,6 @@ class LegacyOpenSslBuildConfig(OpenSslBuildConfig):
         if self.platform in [SupportedPlatformEnum.WINDOWS_32, SupportedPlatformEnum.WINDOWS_64]:
             return self.src_path / "out32" / "libeay32.lib"
         else:
-            cp /usr/lib64/libcrypto.so deps/openssl-OpenSSL_1_0_2e
             return self.src_path / "libcrypto.so"
 
     @property
