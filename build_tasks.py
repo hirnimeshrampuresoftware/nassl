@@ -247,6 +247,13 @@ class LegacyOpenSslBuildConfig(OpenSslBuildConfig):
 
     @property
     def libcrypto_path(self) -> Path:
+        path = os.getcwd()
+        name = "libcrypto.so"
+
+        for root, dirs, files in os.walk(path):
+            if name in files:
+                print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+                print(os.path.join(root, name))
         shutil.copy('/usr/lib64/libcrypto.so', 'deps/openssl-OpenSSL_1_0_2e/libcrypto.so')
         if self.platform in [SupportedPlatformEnum.WINDOWS_32, SupportedPlatformEnum.WINDOWS_64]:
             return self.src_path / "out32" / "libeay32.lib"
@@ -401,7 +408,6 @@ def build_modern_openssl(ctx, do_not_clean=False):
 def build_nassl(ctx):
     """Build the nassl C extension."""
     extra_args = "--plat-name=aarch64"
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     if CURRENT_PLATFORM == SupportedPlatformEnum.WINDOWS_32:
         extra_args = "--plat-name=win32"
     elif CURRENT_PLATFORM == SupportedPlatformEnum.WINDOWS_64:
@@ -418,7 +424,6 @@ def build_nassl(ctx):
 @task
 def build_deps(ctx, do_not_clean=False):
     """Build the C libraries the nassl C extension depends on."""
-    print("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
     build_zlib(ctx, do_not_clean)
     build_legacy_openssl(ctx, do_not_clean)
     build_modern_openssl(ctx, do_not_clean)
