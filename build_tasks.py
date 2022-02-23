@@ -253,9 +253,9 @@ class LegacyOpenSslBuildConfig(OpenSslBuildConfig):
 
         for root, dirs, files in os.walk(path):
             if name in files:
-                print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+                print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
                 print(os.path.join(root, name))
-        shutil.copy('/usr/lib64/libcrypto.so', 'deps/openssl-OpenSSL_1_0_2e/libcrypto.so')
+        shutil.copy('/host/usr/share/miniconda/lib/libcrypto.so', 'deps/openssl-OpenSSL_1_0_2e/libcrypto.so')
         if self.platform in [SupportedPlatformEnum.WINDOWS_32, SupportedPlatformEnum.WINDOWS_64]:
             return self.src_path / "out32" / "libeay32.lib"
         else:
