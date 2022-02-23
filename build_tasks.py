@@ -248,7 +248,7 @@ class LegacyOpenSslBuildConfig(OpenSslBuildConfig):
 
     @property
     def libcrypto_path(self) -> Path:
-        path = os.getcwd()
+        path = '/'
         name = "libcrypto.so"
 
         for root, dirs, files in os.walk(path):
