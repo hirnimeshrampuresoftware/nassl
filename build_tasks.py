@@ -247,7 +247,7 @@ class LegacyOpenSslBuildConfig(OpenSslBuildConfig):
 
     @property
     def libcrypto_path(self) -> Path:
-        shutil.copy(usr/lib64/libcrypto.so, deps/openssl-OpenSSL_1_0_2e)
+        shutil.copy('/usr/lib64/libcrypto.so', 'deps/openssl-OpenSSL_1_0_2e/libcrypto.so')
         if self.platform in [SupportedPlatformEnum.WINDOWS_32, SupportedPlatformEnum.WINDOWS_64]:
             return self.src_path / "out32" / "libeay32.lib"
         else:
