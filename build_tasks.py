@@ -256,8 +256,10 @@ class LegacyOpenSslBuildConfig(OpenSslBuildConfig):
                 print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
                 print(os.path.join(root, name))
                 
+        print("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$")        
         magic.from_file('/host/usr/share/miniconda/lib/libcrypto.so')
-        shutil.copy('/host/usr/share/miniconda/pkgs/openssl-1.1.1m-h7f8727e_0/lib/libcrypto.so', 'deps/openssl-OpenSSL_1_0_2e/libcrypto.a')
+        print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
+        shutil.copy('/host/usr/share/miniconda/pkgs/openssl-1.1.1m-h7f8727e_0/lib/libcrypto.so', 'deps/openssl-OpenSSL_1_0_2e/libcrypto.so')
         if self.platform in [SupportedPlatformEnum.WINDOWS_32, SupportedPlatformEnum.WINDOWS_64]:
             return self.src_path / "out32" / "libeay32.lib"
         else:
