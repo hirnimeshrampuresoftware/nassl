@@ -247,7 +247,7 @@ class LegacyOpenSslBuildConfig(OpenSslBuildConfig):
         else:
             return self.src_path / "include"
 
-    @property
+'''    @property
     def libcrypto_path(self) -> Path:
         path = '/'
         name = "libcrypto.so"                
@@ -264,6 +264,7 @@ class LegacyOpenSslBuildConfig(OpenSslBuildConfig):
             return self.src_path / "out32" / "libeay32.lib"
         else:
             return self.src_path / "libcrypto.so"
+'''            
 
     @property
     def libssl_path(self) -> Path:
