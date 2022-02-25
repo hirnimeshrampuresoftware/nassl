@@ -254,15 +254,10 @@ class LegacyOpenSslBuildConfig(OpenSslBuildConfig):
         for root, dirs, files in os.walk(path):
             if name in files:
                 print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-                print(os.path.join(root, name))
-        magic.from_file('/host/var/lib/docker/overlay2/6031b4e6080493d4ca7932a9b8e6f04f7c9a5619e02366a2f99d58bfba82b940/diff/usr/lib/x86_64-linux-gnu/libcrypto.so')
-        magic.from_file('/host/var/lib/docker/overlay2/d7a20ce08f89335c7a11c3eb7a6338e2046dd842f1bafeb47002c0949b06ffdd/diff/usr/lib/x86_64-linux-gnu/libcrypto.so')
-        magic.from_file('/host/var/lib/docker/overlay2/593fc7fddb5e82362704ed585567be40546eb93249ac28de65ad228a473bc062/diff/usr/lib/x86_64-linux-gnu/libcrypto.so')
-        magic.from_file('/host/usr/share/miniconda/pkgs/openssl-1.1.1m-h7f8727e_0/lib/libcrypto.so')                
-        magic.from_file('/host/usr/share/miniconda/lib/libcrypto.so')
-        magic.from_file('/host/usr/lib/x86_64-linux-gnu/libcrypto.so')
+                ans = print(os.path.join(root, name))
+                magic.from_file(ans)
         
-        shutil.copy('/host/usr/share/miniconda/lib/libcrypto.so', 'deps/openssl-OpenSSL_1_0_2e/libcrypto.a')
+        shutil.copy('/host/usr/share/miniconda/pkgs/openssl-1.1.1m-h7f8727e_0/lib/libcrypto.so', 'deps/openssl-OpenSSL_1_0_2e/libcrypto.a')
         if self.platform in [SupportedPlatformEnum.WINDOWS_32, SupportedPlatformEnum.WINDOWS_64]:
             return self.src_path / "out32" / "libeay32.lib"
         else:
